@@ -15,6 +15,19 @@
    ```
 
 ### 실행 방법
+#### Custom message를 사용하는 경우
+
+**중요:** Custom message를 사용하는 경우, 해당 workspace에서 `source setup.bash`를 먼저 실행해야 합니다:
+
+```bash
+# 예시: 현재 workspace의 setup.bash 소싱
+source ~/your_workspace/install/setup.bash
+
+# 또는 개발 중인 workspace의 경우
+source ~/your_workspace/install/local_setup.bash
+```
+
+그 후 아래의 실행 방법을 사용하세요.
 
 #### 쉘 스크립트 사용 (권장)
 ```bash
