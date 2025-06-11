@@ -82,23 +82,40 @@ done
 echo "=== End of Configuration ==="
 echo ""
 
-echo "Starting multiple instances of '$LOGGER_SCRIPT' in the foreground..."
+echo "Starting multiple instances of '$LOGGER_SCRIPT' in the background..."
+
+# Array to store process IDs
+PIDS=()
 
 for args_str in "${ARGUMENTS_LIST[@]}"; do
     # If args_str is empty, just run the script. Otherwise, pass args_str.
     if [ -z "$args_str" ]; then
-        echo "Starting $LOGGER_SCRIPT"
-        $LOGGER_SCRIPT
+        echo "Starting $LOGGER_SCRIPT in background"
+        $LOGGER_SCRIPT &
+        PIDS+=($!)
     else
-        echo "Starting $LOGGER_SCRIPT $args_str"
+        echo "Starting $LOGGER_SCRIPT $args_str in background"
         # $args_str is intentionally not quoted here to allow word splitting by the shell.
         # If an argument within args_str itself contains spaces and should be treated as a single argument
         # by topic_logger.sh, it should be quoted appropriately within the configuration file.
-        $LOGGER_SCRIPT $args_str
+        $LOGGER_SCRIPT $args_str &
+        PIDS+=($!)
     fi
 done
 
 echo ""
-echo "All foreground tasks completed. This script ('$0') will now exit."
+echo "All ${#PIDS[@]} instances started in background."
+echo "Process IDs: ${PIDS[*]}"
+echo ""
+echo "Waiting for all background processes to complete..."
+echo "Press Ctrl+C to terminate all processes."
+
+# Wait for all background processes to complete
+for pid in "${PIDS[@]}"; do
+    wait $pid
+done
+
+echo ""
+echo "All background tasks completed. This script ('$0') will now exit."
 echo "Configuration loaded from: '$CONFIG_FILE'"
 
