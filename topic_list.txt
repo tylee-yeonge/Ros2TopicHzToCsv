@@ -2,14 +2,26 @@
 # Format: <topic_name> <message_type>
 # Lines starting with # are comments and will be ignored
 # Empty lines are also ignored
-
+state_manager/client_rx middleware_msgs/msg/TopicJson
 front/scan sensor_msgs/msg/LaserScan
 rear/scan sensor_msgs/msg/LaserScan
 safety_plc/get/obstacle_zone_shape std_msgs/msg/UInt8
-rs_camera_1/depth/image_rect_raw sensor_msgs/msg/Image
+active_em_by_button std_msgs/msg/Bool
+active_em_by_bumper std_msgs/msg/Bool
+active_em_by_mode_change std_msgs/msg/Bool
+safety_plc/get/warning_filed/state std_msgs/msg/UInt8
+safety_plc/get/protective_filed/state std_msgs/msg/UInt8
+sto_by_topper_locomotion std_msgs/msg/Bool
+only_amr_sto std_msgs/msg/Bool
+rs_camera_1/depth/color/points sensor_msgs/PointCloud2
+rs_camera_1/color/image_raw sensor_msgs/msg/Image
+rs_camera_2/depth/color/points sensor_msgs/PointCloud2
 rs_camera_2/color/image_raw sensor_msgs/msg/Image
-rs_camera_3/depth/image_rect_raw sensor_msgs/msg/Image
+rs_camera_3/depth/color/points sensor_msgs/PointCloud2
+rs_camera_3/color/image_raw sensor_msgs/msg/Image
+rs_camera_4/depth/color/points sensor_msgs/PointCloud2
 rs_camera_4/color/image_raw sensor_msgs/msg/Image
+rs_camera_5/depth/color/points sensor_msgs/PointCloud2
 rs_camera_5/color/image_raw sensor_msgs/msg/Image
 front_md/postion_feedback accessories_msgs/msg/RoboteqPostionFeedback
 rear_md/postion_feedback accessories_msgs/msg/RoboteqPostionFeedback 
