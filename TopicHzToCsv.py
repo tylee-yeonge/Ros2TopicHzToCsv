@@ -11,7 +11,7 @@ import datetime  # 시간 형식 변환을 위해 필요
 class TopicHzToCsv(Node):
     def __init__(self):
         super().__init__(
-            f"topic_hz_to_csv_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
+            f"topic_hz_to_csv_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S%f')}"
         )
         self.declare_parameter("topic_name", "/your/topic")
         self.declare_parameter("message_type", "std_msgs/msg/String")
